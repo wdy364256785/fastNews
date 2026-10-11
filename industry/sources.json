@@ -120,25 +120,33 @@
     {
       "id": "jin10-news",
       "name": "金十数据公开资讯",
-      "kind": "web_list",
+      "kind": "json_list",
       "config": {
-        "url": "https://news.jin10.com/",
-        "parseMode": "html",
-        "itemSelector": ".jin10-news-list-item:not(:has(.vip-mini))",
-        "linkSelector": ".jin10-news-list-item-info > a",
-        "titleSelector": ".jin10-news-list-item-title",
+        "url": "https://cdn.jin10.com/json/index/latest_news.json",
+        "mode": "json_api",
+        "itemsPath": "list",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "{raw:web_redirect_url}",
+        "summaryPaths": [
+          "introduction"
+        ],
+        "publishedAtPath": "display_datetime",
+        "publishedAtUtcOffset": "+08:00",
+        "externalIdPath": "id",
+        "requireBoolean": {
+          "path": "vip",
+          "equals": 0
+        },
         "allowUrlPrefixes": [
           "https://xnews.jin10.com/details/"
         ],
-        "publishedAtUtcOffset": "+08:00",
-        "detail": {
-          "maxFetches": 8,
-          "titleSelector": ".news-app_title",
-          "summarySelector": "meta[name=\"description\"]"
-        },
+        "fetchPublicContent": true,
         "_aihot": {
           "initialBackfillLimit": 8
-        }
+        },
+        "urlTemplateFallback": "https://xnews.jin10.com/details/{id}"
       },
       "tier": "T2",
       "owner_entity_id": null,
