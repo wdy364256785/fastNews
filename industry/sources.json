@@ -1,216 +1,141 @@
 {
-  "$comment": "示范信源：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖。之后在后台“信源”里新建、修改和暂停。字段说明见 docs/customize.md。",
+  "$comment": "金融站信源：金十数据、财联社、Investing.com、金投网已获用户选入白名单；其余为草案。白名单选择不代表采集启用或全文授权；自动采集保持关闭，启用前核对日期、访问权限和试抓结果。已有数据库配置不被 seed 覆盖。",
   "sources": [
     {
-      "id": "rss-openai-news",
-      "name": "OpenAI News",
-      "kind": "rss",
+      "id": "eastmoney-finance",
+      "name": "东方财富财经（草案）",
+      "kind": "json_list",
       "config": {
-        "feedUrl": "https://openai.com/news/rss.xml",
+        "url": "https://np-listapi.eastmoney.com/comm/web/getNewsByColumns?client=web&biz=web_news_col&column=350&order=1&needInteractData=0&page_index=1&page_size=30&req_trace=finhot-draft",
+        "mode": "json_api",
+        "itemsPath": "data.list",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://finance.eastmoney.com/a/{code}.html",
+        "summaryPaths": [
+          "summary"
+        ],
+        "publishedAtPath": "showTime",
+        "publishedAtUtcOffset": "+08:00",
+        "externalIdPath": "code",
         "_aihot": {
           "initialBackfillLimit": 8
         }
       },
-      "tier": "T1",
-      "owner_entity_id": "openai",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-google-deepmind",
-      "name": "Google DeepMind",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://deepmind.google/blog/rss.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "google",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-google-research",
-      "name": "Google Research",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://research.google/blog/rss/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "google",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-hugging-face",
-      "name": "Hugging Face Blog",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://huggingface.co/blog/feed.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "hugging-face",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "开源"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-microsoft-research",
-      "name": "Microsoft Research",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.microsoft.com/en-us/research/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "microsoft",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-nvidia-blog",
-      "name": "NVIDIA Blog",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://blogs.nvidia.com/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "nvidia",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-aws-ml",
-      "name": "AWS Machine Learning Blog",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
+      "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
+      "interval_minutes": 60,
       "tags": [
-        "官方",
-        "教程"
+        "A股",
+        "宏观"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-github-ai",
-      "name": "GitHub Blog · AI & ML",
+      "id": "rthk-finance",
+      "name": "香港电台财经（草案）",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://github.blog/ai-and-ml/feed/",
+        "feedUrl": "https://rthk.hk/rthk/news/rss/c_expressnews_cfinance.xml",
         "_aihot": {
           "initialBackfillLimit": 8
         }
       },
-      "tier": "T1",
+      "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
+      "interval_minutes": 60,
       "tags": [
-        "官方"
+        "港股",
+        "A股",
+        "美股"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-mistral",
-      "name": "Mistral AI",
+      "id": "fed-monetary",
+      "name": "美联储货币政策（草案）",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://mistral.ai/news/rss",
+        "feedUrl": "https://www.federalreserve.gov/feeds/press_monetary.xml",
         "_aihot": {
           "initialBackfillLimit": 8
         }
       },
       "tier": "T1",
-      "owner_entity_id": null,
+      "owner_entity_id": "fed",
       "participation_mode": "editorial",
-      "interval_minutes": 120,
+      "interval_minutes": 60,
       "tags": [
-        "官方"
+        "利率",
+        "黄金",
+        "美股"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-bair",
-      "name": "Berkeley AI Research",
-      "kind": "rss",
+      "id": "wgc-research",
+      "name": "世界黄金协会研究（草案）",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://bair.berkeley.edu/blog/feed.xml",
+        "url": "https://www.gold.org/goldhub/research/library",
+        "parseMode": "html",
+        "itemSelector": ".m-carousel-slide-mini",
+        "linkSelector": "a",
+        "titleSelector": "a",
+        "allowUrlPrefixes": [
+          "https://www.gold.org/goldhub/research/"
+        ],
+        "detail": {
+          "maxFetches": 8,
+          "publishedAtSelector": "time[datetime]",
+          "titleSelector": "h1",
+          "summarySelector": "meta[name=\"description\"]"
+        },
         "_aihot": {
           "initialBackfillLimit": 8
         }
       },
       "tier": "T1",
-      "owner_entity_id": null,
+      "owner_entity_id": "wgc",
       "participation_mode": "editorial",
       "interval_minutes": 180,
       "tags": [
-        "研究"
+        "黄金",
+        "央行购金",
+        "黄金ETF"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-the-verge-ai",
-      "name": "The Verge · AI",
-      "kind": "rss",
+      "id": "jin10-news",
+      "name": "金十数据公开资讯",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+        "url": "https://news.jin10.com/",
+        "parseMode": "html",
+        "itemSelector": ".jin10-news-list-item:not(:has(.vip-mini))",
+        "linkSelector": ".jin10-news-list-item-info > a",
+        "titleSelector": ".jin10-news-list-item-title",
+        "allowUrlPrefixes": [
+          "https://xnews.jin10.com/details/"
+        ],
+        "publishedAtUtcOffset": "+08:00",
+        "detail": {
+          "maxFetches": 8,
+          "titleSelector": ".news-app_title",
+          "summarySelector": "meta[name=\"description\"]"
+        },
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -220,17 +145,39 @@
       "participation_mode": "editorial",
       "interval_minutes": 60,
       "tags": [
-        "媒体"
+        "美股",
+        "黄金",
+        "利率"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-techcrunch-ai",
-      "name": "TechCrunch · AI",
-      "kind": "rss",
+      "id": "cls-finance",
+      "name": "财联社财经资讯",
+      "kind": "json_list",
       "config": {
-        "feedUrl": "https://techcrunch.com/category/artificial-intelligence/feed/",
+        "url": "https://www.cls.cn/",
+        "mode": "html_json_key",
+        "jsonKey": "depth_list",
+        "titlePaths": [
+          "title"
+        ],
+        "urlTemplate": "https://www.cls.cn/detail/{id}",
+        "summaryPaths": [
+          "brief"
+        ],
+        "authorPaths": [
+          "source"
+        ],
+        "publishedAtPath": "ctime",
+        "publishedAtUnit": "epoch_s",
+        "externalIdPath": "id",
+        "requireBoolean": {
+          "path": "is_ad",
+          "equals": 0
+        },
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -240,17 +187,21 @@
       "participation_mode": "editorial",
       "interval_minutes": 60,
       "tags": [
-        "媒体"
+        "A股",
+        "港股",
+        "美股",
+        "黄金"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-ars-technica-ai",
-      "name": "Ars Technica · AI",
+      "id": "investing-stocks",
+      "name": "Investing.com 股票市场",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://arstechnica.com/ai/feed/",
+        "feedUrl": "https://www.investing.com/rss/news_25.rss",
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -260,37 +211,19 @@
       "participation_mode": "editorial",
       "interval_minutes": 60,
       "tags": [
-        "媒体"
+        "美股",
+        "港股"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-mit-tech-review-ai",
-      "name": "MIT Technology Review · AI",
+      "id": "investing-commodities",
+      "name": "Investing.com 大宗商品与期货",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-the-decoder",
-      "name": "The Decoder",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://the-decoder.com/feed/",
+        "feedUrl": "https://www.investing.com/rss/news_11.rss",
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -300,17 +233,33 @@
       "participation_mode": "editorial",
       "interval_minutes": 60,
       "tags": [
-        "媒体"
+        "黄金"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
-      "id": "rss-simon-willison",
-      "name": "Simon Willison",
-      "kind": "rss",
+      "id": "cngold-gold",
+      "name": "金投网黄金资讯",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://simonwillison.net/atom/everything/",
+        "url": "https://gold.cngold.org/",
+        "parseMode": "html",
+        "itemSelector": ".jssx_ind .common_list > li",
+        "linkSelector": "a",
+        "titleSelector": "a",
+        "allowUrlPrefixes": [
+          "https://www.cngold.org/c/"
+        ],
+        "publishedAtUtcOffset": "+08:00",
+        "detail": {
+          "maxFetches": 8,
+          "publishedAtSelector": ".aricleInfo > span",
+          "publishedAtAuthoritative": true,
+          "titleSelector": ".mainLeft > h2",
+          "summarySelector": "meta[name=\"description\"]"
+        },
         "_aihot": {
           "initialBackfillLimit": 8
         }
@@ -318,53 +267,15 @@
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
+      "interval_minutes": 60,
       "tags": [
-        "个人"
+        "黄金",
+        "黄金ETF",
+        "现货黄金"
       ],
       "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-import-ai",
-      "name": "Import AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://importai.substack.com/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 180,
-      "tags": [
-        "个人",
-        "周刊"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-latent-space",
-      "name": "Latent Space",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.latent.space/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 180,
-      "tags": [
-        "个人"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     }
   ]
 }

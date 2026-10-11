@@ -1,3 +1,5 @@
+> 本分支已定制为「金融热点（草案）」：A 股、港股、美股与全球黄金。站点配置、信源状态、启动方法和待确认事项见 [金融版说明](docs/finance-setup.md)。
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner-dark.png">
