@@ -18,14 +18,14 @@ export const EDITION_WHEN = {
 
 export const SITE = {
   /** 站名：导航、页面标题、分享图、RSS、MCP、后台都用它。 */
-  name: "金融热点（草案）",
+  name: "金融快讯",
   /**
    * 行业词：拼进默认说法里，比如“AI 日报”“AI 动态”。
    * 改成“法律”“HR”“黄金”之类，页面上就会变成“法律日报”“法律动态”。
    */
   subject: "金融",
   /** 首页的完整标题（浏览器标签、搜索结果）。 */
-  homeTitle: "金融热点（草案） — A 股 · 港美股 · 全球黄金",
+  homeTitle: "金融快讯 — A 股 · 港美股 · 全球黄金",
   /** 主题目录页（/topics）的标题。 */
   topicsTitle: "金融主题：市场、机构与资讯类型的最新动态",
   /** 反馈表单输入框里的示例。 */
@@ -70,12 +70,12 @@ export const SITE = {
   github: null as string | null,
   /** 结构化数据里的网站运营者（搜索引擎用）。 */
   organization: {
-    name: "金融热点（草案）",
+    name: "金融快讯",
     /** 创始人（选填）。 */
     founder: null as null | { name: string; alternateName?: string; jobTitle?: string; description?: string; url?: string },
   },
   /** 抓取信源时报上的名字和版本（User-Agent 里用），不要冒用别的站。 */
-  crawlerName: "FinHotDraftBot/1.0",
+  crawlerName: "FinNewsBot/1.0",
 } as const;
 
 /** 使用规则和隐私说明两页（正文在 pages/ 里）。 */
